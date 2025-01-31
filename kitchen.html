@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Thermostat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .header button {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+        }
+        .nav-icons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .nav-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .nav-icon.active {
+            color: #ef4444;
+        }
+        .nav-icon span {
+            font-size: 24px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0 0 30px 0;
+        }
+        .mode-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .mode-button {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .mode-button span {
+            font-size: 24px;
+        }
+        .mode-button.active {
+            background-color: #ef4444;
+            border-color: #ef4444;
+        }
+        .temperature-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .temp-button {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #ffffff;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .temp-display {
+            text-align: center;
+        }
+        .temp-value {
+            font-size: 72px;
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 16px;
+        }
+        .power-button {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .room-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .room-card {
+            background-color: #1e293b;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .room-title {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .room-data {
+            display: flex;
+            justify-content: space-between;
+        }
+        .data-group h3 {
+            font-size: 20px;
+            margin: 0 0 4px 0;
+        }
+        .data-label {
+            color: #64748b;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button onclick="history.back()">←</button>
+            <h2>Kitchen</h2>
+            <button>+</button>
+        </div>
+
+        <nav class="nav-icons">
+            <a href="#" class="nav-icon">
+                <span>💡</span>
+                Light
+            </a>
+            <a href="#" class="nav-icon active">
+                <span>🌡️</span>
+                Thermostat
+            </a>
+            <a href="#" class="nav-icon">
+                <span>❄️</span>
+                Fridge
+            </a>
+            <a href="#" class="nav-icon">
+                <span>🌪️</span>
+                Fans
+            </a>
+            <a href="#" class="nav-icon">
+                <span>🔊</span>
+                Speakers
+            </a>
+        </nav>
+
+        <h1>Thermostat</h1>
+
+        <div class="mode-buttons">
+            <button class="mode-button active">
+                <span>❄️</span>
+                Heating
+            </button>
+            <button class="mode-button">
+                <span>🌡️</span>
+                Heating
+            </button>
+            <button class="mode-button">
+                <span>🌪️</span>
+                Fan
+            </button>
+        </div>
+
+        <div class="temperature-control">
+            <button class="temp-button" onclick="adjustTemp(-1)">-</button>
+            <div class="temp-display">
+                <div class="temp-value" id="temp-value">24</div>
+                <button class="power-button">⭘</button>
+            </div>
+            <button class="temp-button" onclick="adjustTemp(1)">+</button>
+        </div>
+
+        <div class="room-stats">
+            <div class="room-card">
+                <div class="room-title">This room</div>
+                <div class="room-data">
+                    <div class="data-group">
+                        <h3>26°</h3>
+                        <div class="data-label">Temperature</div>
+                    </div>
+                    <div class="data-group">
+                        <h3>60%</h3>
+                        <div class="data-label">Air humidity</div>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-title">Bad room</div>
+                <div class="room-data">
+                    <div class="data-group">
+                        <h3>26°</h3>
+                        <div class="data-label">Temperature</div>
+                    </div>
+                    <div class="data-group">
+                        <h3>60%</h3>
+                        <div class="data-label">Air humidity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTemp = 24;
+        
+        function adjustTemp(change) {
+            currentTemp += change;
+            document.getElementById('temp-value').textContent = currentTemp;
+        }
+
+        // Handle mode button selection
+        document.querySelectorAll('.mode-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelector('.mode-button.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+
+        // Handle power button
+        document.querySelector('.power-button').addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

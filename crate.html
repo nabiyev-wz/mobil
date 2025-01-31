@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Routine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-button {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+        }
+        .save-button {
+            background-color: #0066ff;
+            border: none;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .label {
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #334155;
+            color: #ffffff;
+            font-size: 16px;
+            padding: 8px 0;
+            margin-bottom: 16px;
+        }
+        .time-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .time-input {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #ffffff;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .days-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .day-button {
+            background-color: transparent;
+            border: 1px solid #334155;
+            color: #ffffff;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .day-button.active {
+            background-color: #ef4444;
+            border-color: #ef4444;
+        }
+        .add-device-button {
+            background-color: #0066ff;
+            border: none;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            margin-bottom: 24px;
+            cursor: pointer;
+        }
+        .device {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .device-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .device-icon {
+            font-size: 24px;
+        }
+        .device-name {
+            margin: 0;
+        }
+        .device-status {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #374151;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="history.back()">←</button>
+            <h1>Create Routine</h1>
+            <button class="save-button">Save</button>
+        </div>
+        <form id="routine-form">
+            <div class="form-group">
+                <label class="label">SCHEDULE NAME</label>
+                <input type="text" class="input" placeholder="Dinner">
+            </div>
+            <div class="time-container">
+                <div>
+                    <label class="label">START TIME</label>
+                    <input type="time" class="time-input" value="19:30">
+                </div>
+                <div>
+                    <label class="label">END TIME</label>
+                    <input type="time" class="time-input" value="21:30">
+                </div>
+            </div>
+            <div class="days-container">
+                <button type="button" class="day-button active">Mon</button>
+                <button type="button" class="day-button">Tue</button>
+                <button type="button" class="day-button">Wed</button>
+                <button type="button" class="day-button">Thu</button>
+                <button type="button" class="day-button">Fri</button>
+                <button type="button" class="day-button">Sat</button>
+                <button type="button" class="day-button">Sun</button>
+            </div>
+           <a href="./kitchen.html"> <button type="button" class="add-device-button">+ Add Device</button></a>
+            <div class="devices-list">
+                <div class="device">
+                    <div class="device-info">
+                        <span class="device-icon">❄️</span>
+                        <div>
+                            <h3 class="device-name">Fans</h3>
+                            <p class="device-status">90%</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="device">
+                    <div class="device-info">
+                        <span class="device-icon">🚿</span>
+                        <div>
+                            <h3 class="device-name">Shower</h3>
+                            <p class="device-status">25°C</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="device">
+                    <div class="device-info">
+                        <span class="device-icon">💡</span>
+                        <div>
+                            <h3 class="device-name">Light 2</h3>
+                            <p class="device-status">80%</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Handle day button clicks
+        document.querySelectorAll('.day-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('routine-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+
+        // Handle add device button
+        document.querySelector('.add-device-button').addEventListener('click', function() {
+            alert('Add device functionality would go here');
+        });
+    </script>
+</body>
+</html>
